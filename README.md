@@ -1,3 +1,10 @@
+# 原因
+解决xlsx-style 不能设置行高的问题
+
+# 使用方式
+npm install just2lab-xlsx-style --save
+
+
 # xlsx-style
 
 Parser and writer for various spreadsheet formats.  Pure-JS cleanroom implementation from official specifications and related documents.
