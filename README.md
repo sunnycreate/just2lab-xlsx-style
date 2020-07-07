@@ -1,5 +1,6 @@
 # 原因
 Fixed : xlsx-style 不能设置行高的问题，cptable报错问题。
+以及添加了一些util方法。
 
 # 使用方式
 npm install xlsx-style-fixed-ty --save
