@@ -2,7 +2,7 @@
 Fixed : xlsx-style 不能设置行高的问题，cptable报错问题。
 
 # 使用方式
-npm install xlsx-style-fixed --save
+npm install xlsx-style-fixed-ty --save
 
 
 # xlsx-style
