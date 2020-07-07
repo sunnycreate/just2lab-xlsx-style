@@ -1,8 +1,8 @@
 # 原因
-解决xlsx-style 不能设置行高的问题
+Fixed : xlsx-style 不能设置行高的问题，cptable报错问题。
 
 # 使用方式
-npm install just2lab-xlsx-style --save
+npm install xlsx-style-fixed --save
 
 
 # xlsx-style

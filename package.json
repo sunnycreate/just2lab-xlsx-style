@@ -1,7 +1,7 @@
 {
-  "name": "just2lab-xlsx-style",
+  "name": "xlsx-style-fixed",
   "version": "0.0.2",
-  "author": "just2lab",
+  "author": "Terry",
   "description": "Excel (XLSB/XLSX/XLSM/XLS/XML) and ODS spreadsheet parser and writer (extended to enable read/write of cell formats with xlsx files)",
   "keywords": [
     "excel",
