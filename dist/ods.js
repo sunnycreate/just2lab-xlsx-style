@@ -4,16 +4,7 @@
 var ODS = {};
 (function make_ods(ODS) {
 /* Open Document Format for Office Applications (OpenDocument) Version 1.2 */
-var get_utils = function() {
-	if(typeof XLSX !== 'undefined') return XLSX.utils;
-	if(typeof module !== "undefined" && typeof require !== 'undefined') try {
-		return require('../' + 'xlsx').utils;
-	} catch(e) {
-		try { return require('./' + 'xlsx').utils; }
-		catch(ee) { return require('xl' + 'sx').utils; }
-	}
-	throw new Error("Cannot find XLSX utils");
-};
+
 var has_buf = (typeof Buffer !== 'undefined');
 
 function cc2str(arr) {
@@ -227,7 +218,7 @@ var parse_content_xml = (function() {
 
 			case 'table': // 9.1.2 <table:table>
 				if(Rn[1]==='/') {
-					if(range.e.c >= range.s.c && range.e.r >= range.s.r) ws['!ref'] = get_utils().encode_range(range);
+					if(range.e.c >= range.s.c && range.e.r >= range.s.r) ws['!ref'] = encode_range(range);
 					if(merges.length) ws['!merges'] = merges;
 					SheetNames.push(sheetag.name);
 					Sheets[sheetag.name] = ws;
@@ -279,7 +270,7 @@ var parse_content_xml = (function() {
 				} else {
 					if(q.t === 's') q.v = textp;
 					if(textp) q.w = textp;
-					if(!(opts.sheetRows && opts.sheetRows < R)) ws[get_utils().encode_cell({r:R,c:C})] = q;
+					if(!(opts.sheetRows && opts.sheetRows < R)) ws[encode_cell({r:R,c:C})] = q;
 					q = null;
 				}
 				break; // 9.1.4 <table:table-cell>
@@ -412,3 +403,10 @@ var parse_ods = function(zip, opts) {
 };
 ODS.parse_ods = parse_ods;
 })(typeof exports !== 'undefined' ? exports : ODS);
+
+function encode_cell(cell) { return encode_col(cell.c) + encode_row(cell.r); }
+function encode_range(cs, ce) {
+	if (ce === undefined || typeof ce === 'number') return encode_range(cs.s, cs.e);
+	if (typeof cs !== 'string') cs = encode_cell(cs); if (typeof ce !== 'string') ce = encode_cell(ce);
+	return cs == ce ? cs : cs + ":" + ce;
+}
